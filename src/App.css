@@ -1,0 +1,50 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 920px;
+}
+.App div {
+  font-family: 'Roboto Mono', monospace;
+  flex-grow: 0;
+}
+.keyboardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.App div > * {
+}
+.position {
+  background: #7ae87a;
+}
+.mistake {
+  background: #e87a7a;
+  text-decoration: underline;
+}
+.regular {
+  background: white;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
