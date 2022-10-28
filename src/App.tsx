@@ -1,19 +1,20 @@
 import './App.css'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store/store";
-import {addMistake, deleteChar, incrPosition, StateType, toggleMistakes} from "./store/reducer";
+import {addMistake, deleteChar, incrPosition, StateType, updateBase} from "./store/reducer";
 import {filterKey} from "./utilities/charValidation";
-import {Keyboard} from "./keyboard/Keyboard";
+import {Keyboard} from "./components/keyboard/Keyboard";
+import {Viewfinder} from "./components/viewfinder/viewfinder";
 
 function App() {
+
     window.onkeydown = (ev: KeyboardEvent): any => detectKeyDown(ev)
 
     const state = useSelector<RootState, StateType>((state) => state)
     const dispatch = useDispatch()
     const currentChar = state.base[state.position]
-    const initialText: Array<string> = [...state.base]
     const position: number = state.position
-    const mistakesPosition: Array<number> = state.mistakesPosition
+
     const detectKeyDown = (e: KeyboardEvent) => {
         e.preventDefault()
         const validatedKey = filterKey(e)                                   //filter ctrl etc
@@ -24,18 +25,22 @@ function App() {
             else if (validatedKey === currentChar) {                        //if correct char
                 dispatch(incrPosition())
             } else {
-                dispatch(addMistake(validatedKey, state.position))                                  //if incorrect char
-                state.allowMistakes && dispatch(incrPosition()) //incr position & add mistake position
+                dispatch(addMistake(validatedKey, state.position))          //if incorrect char
+                state.allowMistakes && dispatch(incrPosition())             //incr position & add mistake position
             }
         }
     }
 
     return (
         <div className="App">
+            <div className={"settingMenu"}>
+
+            </div>
+            <div className={"textWrapper"}>
+                <Viewfinder/>
+            </div>
+            <Keyboard char={currentChar} layout={state.layout}/>
             <div>
-                <div>
-                    All mistakes: {state.mistakesChar.concat('')}
-                </div>
                 <div>
                     Mistakes allowed? {state.allowMistakes ? 'Yes' : 'No'}
                 </div>
@@ -46,28 +51,9 @@ function App() {
                     )}%
                 </div>
             </div>
-            <div>
-                {
-                    initialText.map((char, index) => {
-                            return (
-                                index === position ?
-                                    <span key={index} className={"position"}>{char}</span>
-                                    : mistakesPosition.some(i => i === index) ?
-                                        <span key={index} className={"mistake"}>{char}</span>
-                                        : <span key={index} className={"regular"}>{char}</span>
-                            )
-                        }
-                    )
-                }
-            </div>
-            <div>
-                <button onClick={() => dispatch(toggleMistakes())}>Toggle allow mistakes</button>
-            </div>
-            <div className={"keyboardWrapper"}>
-                <Keyboard
-                    char={currentChar}
-                />
-            </div>
+            <button onClick={() => {
+                dispatch(updateBase(prompt("enter new text") ||''))
+            }}>Add new text</button>
         </div>
     )
 }

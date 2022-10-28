@@ -1,16 +1,20 @@
 import React from 'react';
-import s from './Keyboard.module.css'
+import s from './KeyboardStrokes.module.css'
+import {engQWERTY} from "../../../lang/english";
+import {lang, layoutType} from "../../../lang/lang";
 
 type KeyboardPropsType = {
     char: string
+    layout: layoutType
 }
 
-export const Keyboard = ({char}: KeyboardPropsType) => {
+export const KeyboardStrokes = ({char, layout}: KeyboardPropsType) => {
 
-    const la = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '/','A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';',`'`, 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/']
+    const {la, rshiftRegExp, lshiftRegExp} = lang(layout)
 
-    const rshift = char.search(/[A-G,Q-T,V-X,Z]/) === 0
-    const lshift = char.search(/[H-P,U,Y]/) === 0
+
+    const rshift = char.search(rshiftRegExp) === 0
+    const lshift = char.search(lshiftRegExp) === 0
 
     const ch = char.toUpperCase()
     return (
