@@ -4,6 +4,7 @@ import {KeyboardStats} from "./keyboardStatistics/KeyboardStats";
 import {useDispatch} from "react-redux";
 import {KeyboardStrokes} from "./keyboardStrokes/KeyboardStrokes";
 import {layoutType} from "../../lang/lang";
+import s from "./Keyboard.module.css"
 
 type KeyboardPropsType = {
     layout: layoutType
@@ -15,9 +16,9 @@ export const Keyboard = ({char, layout}: KeyboardPropsType) => {
     const [showVariant, setShowVariant] = useState(1)
     const dispatch = useDispatch()
     return (
-        <>
-            <div className={"menuWrapper"}>
-                <div className={"keyboardMenu"}>
+        <div className={s.wrapper}>
+            <div className={s.menuWrapper}>
+                <div className={s.keyboardMenu}>
                     <div
                         onClick={()=>setShowVariant(1)}
                         className={showVariant === 1 ? 'active' : ''}
@@ -25,19 +26,19 @@ export const Keyboard = ({char, layout}: KeyboardPropsType) => {
                     <div
                         onClick={()=>setShowVariant(2)}
                         className={showVariant === 2 ? 'active' : ''}
-                    >Show mistakes heatmap</div>
+                    >Show mistakes</div>
                     <div>
-                        <label className="container">RUS
+                        <label className={s.container}>RUS
                             <input type="radio" checked={layout === 'RUS'} name="radio" onChange={()=> dispatch(changeLayout('RUS'))}/>
                         </label>
-                        <label className="container">ENG
+                        <label className={s.container}>ENG
                             <input type="radio" checked={layout === 'ENG'} name="radio" onChange={()=> dispatch(changeLayout('ENG'))}/>
                         </label>
                     </div>
                 </div>
                 <button onClick={() => dispatch(toggleMistakes())}>Toggle allow mistakes</button>
             </div>
-            <div className={"keyboardWrapper"}>
+            <div className={s.keyboardWrapper}>
                 {
                     showVariant === 1 ?
                         <KeyboardStrokes
@@ -49,6 +50,6 @@ export const Keyboard = ({char, layout}: KeyboardPropsType) => {
                 }
 
             </div>
-        </>
+        </div>
     );
 }

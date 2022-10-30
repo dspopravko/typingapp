@@ -1,0 +1,29 @@
+.textWrapper {
+    white-space: pre-wrap;
+    text-align: left;
+    overflow-y: hidden;
+    height: 100%;
+    font-size: 3rem;
+    line-height: 6rem;
+}
+.position {
+    color: var(--text-color);
+    border-radius: 4px;
+    margin: 1px;
+    width: 2rem;
+    background: #6db96d;
+}
+.mistake {
+    color: var(--text-color);
+    border-radius: 4px;
+    background: #e87a7a;
+    margin: 1px;
+    width: 2rem;
+    text-decoration: underline;
+}
+.regular {
+    color: var(--text-color);
+    margin: 1px;
+    width: 2rem;
+    background: var(--foreground-color);
+}

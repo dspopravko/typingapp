@@ -16,65 +16,15 @@
   font-family: 'Roboto Mono', monospace;
   flex-grow: 0;
 }
-.textWrapper {
-  text-align: left;
-  overflow-y: scroll;
-  height: 40vh;
-  font-size: 3rem;
-  line-height: 4rem;
-}
-.textWrapper span {
-
-}
-.keyboardWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.App div > * {
-}
-.position {
-  border-radius: 4px;
-  margin: 1px;
-  background: #7ae87a;
-}
-.mistake {
-  border-radius: 4px;
-  background: #e87a7a;
-  margin: 1px;
-  text-decoration: underline;
-}
-.regular {
-  width: 1rem;
-  background: white;
-}
-.menuWrapper {
- display: flex;
-  justify-content: space-between;
-}
-.menuWrapper div {
-  padding: 6px;
-}
-.keyboardMenu {
-  display: flex;
-  flex-direction: row;
-}
-.keyboardMenu div {
-  cursor: pointer;
-}
 .active {
-  background: #f5fff5;
+  background: var(--primary-color)
 }
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
-
 .read-the-docs {
   color: #888;
+}
+.displayWrapper {
+  height: 30vh;
 }

@@ -13,7 +13,7 @@ export const KeyboardStats = ({layout}: { layout: layoutType }) => {
 
     const state = useSelector<RootState, StateType>((state) => state)
 
-    const Stats = getStats(state.mistakesChar)
+    const Stats = getStats(state.missedChar)
     const max = Math.max(...Object.values(Stats))
 
     const mergedStats = mergeStats(la, Stats, max)

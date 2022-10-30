@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './KeyboardStrokes.module.css'
-import {engQWERTY} from "../../../lang/english";
 import {lang, layoutType} from "../../../lang/lang";
 
 type KeyboardPropsType = {
